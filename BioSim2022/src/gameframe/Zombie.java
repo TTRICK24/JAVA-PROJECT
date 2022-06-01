@@ -5,10 +5,16 @@
  */
 package gameframe;
 
+import java.awt.Color;
+
 /**
  *
  * @author 992041
  */
-public class Zombie {
-    
+public class Zombie extends Actor {
+    public Zombie() {
+        super(); 
+        setColor(Color.GREEN);
+        setSize(25);
+    }
 }

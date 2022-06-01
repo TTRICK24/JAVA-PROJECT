@@ -20,7 +20,7 @@ public class Actor {
         speed=0;
         direction=0;
         myColor=Color.BLACK;
-        size=20;
+        size=10;
     }
     
     public void act() {

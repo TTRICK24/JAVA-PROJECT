@@ -35,14 +35,21 @@ public void draw(Graphics g) {
     }
 
 public void move(){
+   
     ArrayList<Actor> ac = getWorld().getActors();
+    if(ac.size()>0){
+    double closest= distanceTo(ac.get(0));
     for(int k=0; k<ac.size();k++){
         Actor temp = ac.get(k);
         if (temp.isActive() && temp instanceof Human) {
             double d = distanceTo(temp);
-            System.out.println("" + temp + " " + d);
+           if(d<closest){
+               closest=d;
+           }
+    chase(closest        
         }
     }
 }
-    
+}
+public 
 }

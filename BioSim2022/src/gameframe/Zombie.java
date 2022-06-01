@@ -34,6 +34,15 @@ public void draw(Graphics g) {
         g.fillRect( getX()-getRoundedSize()/4, getY()-getRoundedSize()/4, getRoundedSize()/2, getRoundedSize()/2 );
     }
 
-public void move()
+public void move(){
+    ArrayList<Actor> ac = getWorld().getActors();
+    for(int k=0; k<ac.size();k++){
+        Actor temp = ac.get(k);
+        if (temp.isActive() && temp instanceof Human) {
+            double d = distanceTo(temp);
+            System.out.println("" + temp + " " + d);
+        }
+    }
+}
     
 }

@@ -436,7 +436,7 @@ public class World extends javax.swing.JFrame implements KeyEventDispatcher,
         //clear out actors
         getWorld().getActors().clear();
         //add some actors to the actors list
-        for(int k=1; k<20; k++) {
+        for(int k=1; k<3; k++) {
             int xp=(int)(Math.random()*800)+1;
             int yp=(int)(Math.random()*600)+1;
             getWorld().add(new Human(), xp, yp);
@@ -448,7 +448,9 @@ public class World extends javax.swing.JFrame implements KeyEventDispatcher,
             getWorld().add(new Food() , xp ,yp);            
         }
         
-        getWorld().add(new Generator() , 10,10);
+        getWorld().add(new Zombie(), 300,300) ;
+        
+        //getWorld().add(new Generator() , 10,10);
         
     }
     

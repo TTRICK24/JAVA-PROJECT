@@ -17,7 +17,7 @@ public class Actor {
     
     public Actor() {
         active=true;
-        speed=0;
+        speed=69;
         direction=0;
         myColor=Color.BLACK;
         size=20;

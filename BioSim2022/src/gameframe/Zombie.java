@@ -46,10 +46,12 @@ public void move(){
            if(d<closest){
                closest=d;
            }
-    chase(closest        
+    chase(closest)        
         }
     }
 }
 }
-public 
+public void chase(double){
+    
+}
 }

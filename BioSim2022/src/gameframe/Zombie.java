@@ -34,9 +34,10 @@ public void draw(Graphics g) {
         g.fillRect( getX()-getRoundedSize()/4, getY()-getRoundedSize()/4, getRoundedSize()/2, getRoundedSize()/2 );
     }
 
-public void move(){
+public void hunt(){
    
     ArrayList<Actor> ac = getWorld().getActors();
+    double dt=0;
     if(ac.size()>0){
     double closest= distanceTo(ac.get(0));
     for(int k=0; k<ac.size();k++){
@@ -46,12 +47,12 @@ public void move(){
            if(d<closest){
                closest=d;
            }
-    chase(closest)        
+     dt=directionTo(temp);   
         }
+        setDirection(dt);
+        move();
     }
 }
 }
-public void chase(double){
-    
-}
+
 }

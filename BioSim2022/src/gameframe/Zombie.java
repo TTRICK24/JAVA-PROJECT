@@ -51,6 +51,7 @@ public void hunt(){
         }
         setDirection(dt);
         move();
+      
     }
 }
 }

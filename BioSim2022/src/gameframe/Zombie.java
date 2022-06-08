@@ -49,6 +49,8 @@ public void hunt(){
            }
      dt=directionTo(prey);   
         }
+        double newSpeed=Randomizer.getDouble(0.5, 1.2);
+        setSpeed(newSpeed);
         setDirection(dt);
        
     }

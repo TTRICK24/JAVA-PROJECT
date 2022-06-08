@@ -10,8 +10,10 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 
-
 public class Zombie extends Actor {
+    
+    Actor myPrey=null;
+    
     public Zombie() {
         super(); 
         setColor(Color.GREEN);
@@ -36,26 +38,36 @@ public void hunt(){
     ArrayList<Actor> ac = getWorld().getActors();
     double dt=0;
     Actor prey=null;
-       
+    //make sure to check later, that prey is not null before trying to use it!   
     if(ac.size()>0){
     double closest= distanceTo(ac.get(0));
     for(int k=0; k<ac.size();k++){
         Actor temp = ac.get(k);
         if (temp.isActive() && temp instanceof Human) {
-            double d = distanceTo(temp);
+           double d = distanceTo(temp);
            if(d<closest){
                closest=d;
                prey=temp;
-           }
-     dt=directionTo(prey);   
+           }  
         }
-        double newSpeed=Randomizer.getDouble(0.5, 1.2);
+    }
+    if (prey==null) {
+        //do nothing
+    }
+    if (prey!=null) {
+        dt=directionTo(prey);  double newSpeed=Randomizer.getDouble(0.5, 1.2);
         setSpeed(newSpeed);
         setDirection(dt);
-       
+        if(distanceTo(prey)<getSize() )
+            attack((Human)prey);
     }
+   
 }
     
 }
-
+public void attack(Human prey){
+        prey.takeDamage(2);
+        System.out.println("attacking " + prey);   
 }
+
+} //eoc

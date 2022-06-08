@@ -6,13 +6,11 @@ import java.util.ArrayList;
 
 public class Human extends Actor {
     
-    int hunger;
-    
     public Human() {
         super(); 
         setColor(Color.BLUE);
         setSize(25);
-        hunger=Randomizer.getInteger(1,500);
+        setHealth(20);
     }
     
    
@@ -20,7 +18,8 @@ public class Human extends Actor {
         randomizeMotion();
         move(); 
         checkFoodCollision();
-        handleHunger();
+        handleHealth();
+       
     }
     
     public void randomizeMotion() {
@@ -52,33 +51,33 @@ public class Human extends Actor {
              Actor temp = getActors().get(k);
              if ( temp instanceof Food && temp.isActive() ) {
                      if (distanceTo(temp)<getSize() ) {
-                         hunger=0;
+                         setHealth(getHealth()+10);
                          getWorld().remove(temp);  //or temp.deactivate();
                      }
              }
          }
          
     }
-    
+
     public void right() {
         setDirection(0);
     }
     
-    public void handleHunger() {
-        hunger+=1;
-        if (hunger>=1200) {
+    public void handleHealth() {
+        if (getHealth()<=0) {
+            System.out.println("handling health");    
             deactivate();
             Death death = new Death();
             getWorld().add( death, getX(), getY() );
-            
-            getWorld().add(new Food(), 100,100);
+           
         }
-        else if (hunger>=800)
+        else if (getHealth()<=50)
             setColor(Color.RED);
-        else if (hunger>=400)
+        else if (getHealth()<=100)
             setColor(Color.ORANGE);
         else
             setColor(Color.BLUE);
     }
     
+   
 }

@@ -14,6 +14,7 @@ public class Actor {
     private double size;
     private boolean active=true;
     private Color myColor;
+    private int health=1;
     
     public Actor() {
         active=true;
@@ -21,6 +22,14 @@ public class Actor {
         direction=0;
         myColor=Color.BLACK;
         size=20;
+    }
+    
+    public int getHealth() {
+        return health;
+    }
+    
+    public void setHealth(int h) {
+        health=h;
     }
     
     public void act() {
@@ -159,6 +168,11 @@ public class Actor {
         if (A==null) 
             return -1;
         return fixDirection( directionTo(A.getX(), A.getY() ) );
+    }
+    
+    public void takeDamage(int dam){
+        health=health-dam;
+        System.out.println(""+this+ " just took damage of " + dam + " new health is " + +health);
     }
     
 }  //end class Actor

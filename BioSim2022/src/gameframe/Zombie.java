@@ -10,10 +10,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 
-/**
- *
- * @author 992041
- */
+
 public class Zombie extends Actor {
     public Zombie() {
         super(); 
@@ -23,7 +20,7 @@ public class Zombie extends Actor {
 
 
  public void act() {
-        
+        hunt();
         move(); 
         
     }
@@ -38,6 +35,8 @@ public void hunt(){
    
     ArrayList<Actor> ac = getWorld().getActors();
     double dt=0;
+    Actor prey=null;
+       
     if(ac.size()>0){
     double closest= distanceTo(ac.get(0));
     for(int k=0; k<ac.size();k++){
@@ -46,14 +45,15 @@ public void hunt(){
             double d = distanceTo(temp);
            if(d<closest){
                closest=d;
+               prey=temp;
            }
-     dt=directionTo(temp);   
+     dt=directionTo(prey);   
         }
         setDirection(dt);
-        move();
-      
+       
     }
 }
+    
 }
 
 }

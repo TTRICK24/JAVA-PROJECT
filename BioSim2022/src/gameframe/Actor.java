@@ -174,5 +174,13 @@ public class Actor {
         health=health-dam;
         System.out.println(""+this+ " just took damage of " + dam + " new health is " + +health);
     }
-    
+    public void onScreen(){
+        if(getY()>580||getY()<30){
+            turn(90);
+        }
+       
+       if(getX()>780||getX()<30){
+        turn(90);
+    }        
+    }
 }  //end class Actor

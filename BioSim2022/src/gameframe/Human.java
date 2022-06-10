@@ -19,6 +19,7 @@ public class Human extends Actor {
         move(); 
         checkFoodCollision();
         handleHealth();
+        onScreen();
        
     }
     

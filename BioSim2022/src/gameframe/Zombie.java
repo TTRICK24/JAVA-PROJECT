@@ -45,7 +45,7 @@ public void draw(Graphics g) {
 public void randomizeMove(){
      int r=Randomizer.getInteger(1,100);
         if (r<=1) {
-            double newSpeed=Randomizer.getDouble(0.5, 1.0);
+            double newSpeed=Randomizer.getDouble(0.5, 1.2);
             double newDirection=Randomizer.getDouble(0,360);
             setSpeed(newSpeed);
             setDirection(newDirection);
@@ -79,7 +79,8 @@ public void hunt(){
         }
         if (prey!=null) {
             phase=1;
-            dt=directionTo(prey);  double newSpeed=Randomizer.getDouble(0.5, 1.0);
+            dt=directionTo(prey);  
+            double newSpeed=Randomizer.getDouble(0.7, 1.2);
             setSpeed(newSpeed);
             setDirection(dt);
             if(distanceTo(prey)<getSize() )

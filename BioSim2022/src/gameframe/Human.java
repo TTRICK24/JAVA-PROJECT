@@ -6,20 +6,28 @@ import java.util.ArrayList;
 
 public class Human extends Actor {
     
+    private Actor closeThreat=null;
+    int phase;
     public Human() {
         super(); 
         setColor(Color.BLUE);
         setSize(25);
         setHealth(20);
+        phase=0;
     }
     
    
     public void act() {
-        randomizeMotion();
-        move(); 
+        onScreen();
+        if (phase==0){
+            randomizeMotion();
+        }
+        
+        move();
+        runAway();
         checkFoodCollision();
         handleHealth();
-        onScreen();
+        
        
     }
     
@@ -37,7 +45,38 @@ public class Human extends Actor {
         }
         
     }
-    
+    public void runAway(){
+           ArrayList<Actor> ac = getWorld().getActors();
+        double dt=0;
+        Actor closeThreat=null;
+    //make sure to check later, that prey is not null before trying to use it!   
+        if(ac.size()>0){
+            double closest=9999999;
+            for(int k=0; k<ac.size();k++){
+                Actor temp = ac.get(k);
+                if (temp.isActive() && temp instanceof Zombie) {
+                double d = distanceTo(temp);
+                    if(d<closest){
+                        closest=d;
+                        closeThreat=temp;
+                    }  
+                }
+            }
+            if (closeThreat==null) {
+                phase=0;//do nothing
+            }
+            if (closeThreat!=null) {
+                phase=1;
+                dt=directionTo(closeThreat)-180;
+                double newSpeed=Randomizer.getDouble(0.5, 1.0);
+                setSpeed(newSpeed);
+                setDirection(dt);
+
+            }
+ 
+   
+    }
+    }
     @Override
     public void draw(Graphics g) {
         g.setColor( getColor() );
@@ -79,6 +118,6 @@ public class Human extends Actor {
         else
             setColor(Color.BLUE);
     }
-    
+   
    
 }

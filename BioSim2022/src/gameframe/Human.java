@@ -16,25 +16,32 @@ public class Human extends Actor {
         phase=0;
     }
     
-   
+    int count=0;
     public void act() {
-        onScreen();
+        
+        count=+1;
         if (phase==0){
             randomizeMotion();
         }
         
-        move();
+        
         runAway();
+        
+        
+        onScreen();
+        move();
         checkFoodCollision();
         handleHealth();
         
+        if (count > 80){
+        count=0;}
        
     }
     
     public void randomizeMotion() {
         int r=Randomizer.getInteger(1,100);
         if (r<=1) {
-            double newSpeed=Randomizer.getDouble(0.5, 1.2);
+            double newSpeed=Randomizer.getDouble(0.5, 2.0);
             double newDirection=Randomizer.getDouble(0,360);
             setSpeed(newSpeed);
             setDirection(newDirection);
@@ -46,7 +53,7 @@ public class Human extends Actor {
         
     }
     public void runAway(){
-           ArrayList<Actor> ac = getWorld().getActors();
+        ArrayList<Actor> ac = getWorld().getActors();
         double dt=0;
         Actor closeThreat=null;
     //make sure to check later, that prey is not null before trying to use it!   

@@ -175,12 +175,23 @@ public class Actor {
         System.out.println(""+this+ " just took damage of " + dam + " new health is " + +health);
     }
     public void onScreen(){
-        if(getY()>580||getY()<30){
+        if(getY()>580){
+            y=580;
+            turn(90);
+        }    
+        if(getX()>780){
+            x=780;
             turn(90);
         }
-       
-       if(getX()>780||getX()<30){
-        turn(90);
-    }        
+        if(getY()<30){
+            y=30;
+            turn(90);
+        
+        }
+        if(getX()<30){
+            x=30;
+            turn(90);
+        }
+          
     }
 }  //end class Actor

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Human extends Actor {
     
     private Actor closeThreat=null;
+    private Actor closeThreat1=null;
     int phase;
     public Human() {
         super(); 
@@ -65,8 +66,10 @@ public class Human extends Actor {
                 double d = distanceTo(temp);
                     if(d<closest){
                         closest=d;
-                        closeThreat=temp;
-                    }  
+                        if(d<200){
+                            closeThreat=temp;
+                        }
+                        }  
                 }
             }
             if (closeThreat==null) {

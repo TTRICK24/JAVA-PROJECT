@@ -30,9 +30,10 @@ public class Human extends Actor {
             borderCollision();
         }
         
-       
-        runAway();
-        
+        if (countdown==0){
+            runAway();
+            countdown=100;
+        }
         
         onScreen();
         
@@ -60,7 +61,7 @@ public class Human extends Actor {
     }
     public void runAway(){
         ArrayList<Actor> ac = getWorld().getActors();
-        double dt=0;
+        
         Actor closeThreat=null;
         
         double closest=999999;
@@ -76,40 +77,47 @@ public class Human extends Actor {
                         if(d<300){
                             closeThreat=temp;
                         }
-                        }  
+                    }  
                 }
             }
             if (closeThreat==null) {
                 phase=0;//do nothing
             }
             if (closeThreat!=null) {
+                System.out.println("zombie nearby" + closeThreat.getX() + "," + closeThreat.getY() );
+                System.out.println("" + getX() + " " + getY() );
                 phase=1;
-                if (countdown==0){
-                    dt=directionTo(closeThreat)-180;
-                }
+                
+                setDirection(directionTo(closeThreat)-180);
+                
                 double zd=directionTo(closeThreat);
+                System.out.println(zd);
                 slow();
-                if(getX()<=30&&getY()<=30){
-                    if(zd<=359 && zd>=315){
-                        dt=270;
+                if(countdown>0){
+                  if(getX()<=30 && getY()<=30){
+                       if(zd<=360 && zd>=315){
+                        setDirection(270);
                         countdown=100;
                         System.out.println("HIHIHIHIHIHIHIHIHI");
                     }
-                    else if(zd<315 && zd>=270){
-                        dt=0;
-                        countdown=100;
-                        System.out.println("HWIOAHTIOAWHTOHWA");
-                    }
+                        else if(zd<315 && zd>=270){
+                            setDirection(0);
+                            countdown=100;
+                            System.out.println("HWIOAHTIOAWHTOHWA");
+                        }
+                        else{
+                            setDirection(directionTo(closeThreat)-180);
+                        }
                 }
                 
                 
-                setDirection(dt);
+               
 
             }
  
    
-    }
-    
+        }
+        }
     }
     @Override
     public void draw(Graphics g) {

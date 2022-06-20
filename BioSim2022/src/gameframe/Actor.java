@@ -122,6 +122,7 @@ public class Actor {
     public void setDirection(double newDirection) {
         direction=newDirection;
         direction=fixDirection(direction);
+        System.out.println(this + " " + direction);
     }
     
     public void turn(double degrees) {

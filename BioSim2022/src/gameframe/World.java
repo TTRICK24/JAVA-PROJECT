@@ -448,7 +448,8 @@ public class World extends javax.swing.JFrame implements KeyEventDispatcher,
             getWorld().add(new Food() , xp ,yp);            
         }
         
-        getWorld().add(new Zombie(), 400,300) ;
+        getWorld().add(new Zombie(), 300, 400) ;
+       
         
         //getWorld().add(new Generator() , 10,10);
         

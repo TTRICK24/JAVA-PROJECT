@@ -33,6 +33,7 @@ public class Human extends Actor {
         move();
         checkFoodCollision();
         handleHealth();
+        slow();
         
         if (count > 80){
         count=0;}
@@ -132,18 +133,16 @@ public class Human extends Actor {
             setColor(Color.ORANGE);
            
         }
-        else{
-            
-        }
+       
     }
    
     public void slow(){
         if (getColor().equals(Color.RED)){
-            setSpeed(getSpeed()-100);
+            setSpeed(getSpeed()-0.5);
             System.out.println("hungry! slowing down");
         }
         else if (getColor().equals(Color.YELLOW)){
-            setSpeed(getSpeed()-50);
+            setSpeed(getSpeed()-0.2);
         }
         
     }

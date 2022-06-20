@@ -120,7 +120,7 @@ public class World extends javax.swing.JFrame implements KeyEventDispatcher,
 
         textTick.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jLabel2.setText("Health:");
+        jLabel2.setText("Humans Left");
 
         textHealth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 

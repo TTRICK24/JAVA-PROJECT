@@ -175,23 +175,59 @@ public class Actor {
         System.out.println(""+this+ " just took damage of " + dam + " new health is " + +health);
     }
     public void onScreen(){
-        if(getY()>580){
-            y=580;
-            turn(90);
-        }    
-        if(getX()>780){
-            x=780;
-            turn(90);
+        int turnNum=0;
+        if (direction>270 && direction<360){
+            turnNum=2;
+        }
+        else if (direction>180 && direction<=270){
+            turnNum=1;
+        }
+        else if (direction>90 && direction<=180){
+            turnNum=3;
+        }
+        else if (direction>=0 && direction<=90){
+            turnNum=2;
         }
         if(getY()<30){
+            
+            if (turnNum==1||turnNum==3){
+                turn(90);
+            }
+             if (turnNum==2){
+                turn(270);
+            }
             y=30;
-            turn(90);
-        
+        }    
+        if(getX()>780){
+            
+            if (turnNum==2){
+                turn(270);
+            }
+            if (turnNum==2){
+                turn(90);
+            }
+            x=780;
+        }
+        if(getY()>580){
+            
+            if (turnNum==1){
+                turn(270);
+            }
+            if (turnNum==2){
+                turn(90);
+            }
+            y=580;
         }
         if(getX()<30){
+            
+            if (turnNum==1){
+                turn(90);
+            }
+            if (turnNum==2||turnNum==3){
+                turn(270);
+            }
             x=30;
-            turn(90);
         }
-          
+        
     }
 }  //end class Actor

@@ -13,27 +13,34 @@ public class Human extends Actor {
         super(); 
         setColor(Color.BLUE);
         setSize(25);
-        setHealth(20);
+        setHealth(80);
         phase=0;
+        
     }
     
     int count=0;
+    int countdown=0;
     public void act() {
-        
+        if (countdown>0){
+            countdown-=1;
+        }
         count=+1;
         if (phase==0){
             randomizeMotion();
+            borderCollision();
         }
         
-        
+       
         runAway();
         
         
         onScreen();
+        
+        
         move();
         checkFoodCollision();
         handleHealth();
-        slow();
+        
         
         if (count > 80){
         count=0;}
@@ -43,15 +50,12 @@ public class Human extends Actor {
     public void randomizeMotion() {
         int r=Randomizer.getInteger(1,100);
         if (r<=1) {
-            double newSpeed=Randomizer.getDouble(0.5, 1.2);
             double newDirection=Randomizer.getDouble(0,360);
-            setSpeed(newSpeed);
+            
             setDirection(newDirection);
+            slow();
         }
-        if ( distanceTo(400,300) > 500 ) {
-            double toCenter = directionTo(400,300);
-            setDirection(toCenter);
-        }
+        
         
     }
     public void runAway(){
@@ -69,7 +73,7 @@ public class Human extends Actor {
                 double d = distanceTo(temp);
                     if(d<closest){
                         closest=d;
-                        if(d<200){
+                        if(d<300){
                             closeThreat=temp;
                         }
                         }  
@@ -80,9 +84,25 @@ public class Human extends Actor {
             }
             if (closeThreat!=null) {
                 phase=1;
-                dt=directionTo(closeThreat)-180;
-                double newSpeed=Randomizer.getDouble(1.5, 2.0);
-                setSpeed(newSpeed);
+                if (countdown==0){
+                    dt=directionTo(closeThreat)-180;
+                }
+                double zd=directionTo(closeThreat);
+                slow();
+                if(getX()<=30&&getY()<=30){
+                    if(zd<=359 && zd>=315){
+                        dt=270;
+                        countdown=100;
+                        System.out.println("HIHIHIHIHIHIHIHIHI");
+                    }
+                    else if(zd<315 && zd>=270){
+                        dt=0;
+                        countdown=100;
+                        System.out.println("HWIOAHTIOAWHTOHWA");
+                    }
+                }
+                
+                
                 setDirection(dt);
 
             }
@@ -114,7 +134,7 @@ public class Human extends Actor {
     }
 
     public void right() {
-        setDirection(0);
+        setDirection(270);
     }
     
     public void handleHealth() {
@@ -138,13 +158,18 @@ public class Human extends Actor {
    
     public void slow(){
         if (getColor().equals(Color.RED)){
-            setSpeed(getSpeed()-0.5);
+            double newSpeed=Randomizer.getDouble(0.4, 0.7);
             System.out.println("hungry! slowing down");
+            setSpeed(newSpeed);
         }
-        else if (getColor().equals(Color.YELLOW)){
-            setSpeed(getSpeed()-0.2);
+        else if (getColor().equals(Color.ORANGE)){
+            double newSpeed=Randomizer.getDouble(1.2, 1.5);
+            setSpeed(newSpeed);
         }
-        
+        else{
+            double newSpeed=Randomizer.getDouble(2.0, 2.3);
+            setSpeed(newSpeed);
+        }
     }
     
    public void starve(){
@@ -162,5 +187,64 @@ public class Human extends Actor {
                     setHealth(getHealth()-50);
                 
              }
+            }
+        }
    }
+      public void borderCollision(){
+        int turnNum=0;
+        if (getDirection()>270 && getDirection()<360){
+            turnNum=2;
+        }
+        else if (getDirection()>180 && getDirection()<=270){
+            turnNum=1;
+        }
+        else if (getDirection()>90 && getDirection()<=180){
+            turnNum=3;
+        }
+        else if (getDirection()>=0 && getDirection()<=90){
+            turnNum=2;
+        }
+        if(getY()>580){
+            
+            if (turnNum==1||turnNum==3){
+                turn(90);
+            }
+             if (turnNum==2){
+                turn(270);
+            }
+            
+        }    
+        if(getX()>780){
+            
+            if (turnNum==2){
+                turn(270);
+            }
+            if (turnNum==2){
+                turn(90);
+            }
+            
+        }
+        if(getY()<30){
+            
+            if (turnNum==1){
+                turn(270);
+            }
+            if (turnNum==2){
+                turn(90);
+            }
+           
+        }
+        if(getX()<30){
+            
+            if (turnNum==1){
+                turn(90);
+            }
+            if (turnNum==2||turnNum==3){
+                turn(270);
+            }
+            
+        }
+        
+    }
+
 }

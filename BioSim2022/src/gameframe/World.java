@@ -443,12 +443,12 @@ public class World extends javax.swing.JFrame implements KeyEventDispatcher,
         }
         
         for(int k=1; k<100; k++) {
-            int xp=(int)(Math.random()*800)+1;
-            int yp=(int)(Math.random()*600)+1;
+            int xp=(int)(Math.random()*760)+30;
+            int yp=(int)(Math.random()*560)+30;
             getWorld().add(new Food() , xp ,yp);            
         }
         
-        getWorld().add(new Zombie(), 300,300) ;
+        getWorld().add(new Zombie(), 400,300) ;
         
         //getWorld().add(new Generator() , 10,10);
         

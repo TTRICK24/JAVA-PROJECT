@@ -480,7 +480,9 @@ public class World extends javax.swing.JFrame implements KeyEventDispatcher,
         tickCount=tickCount+1;
         textTick.setText(""+tickCount);
     }
-    
+    public long getTick(){
+        return tickCount;
+    }
     //handle keyboard presses
     public void keyboardCheck() {
         if (key_d==true){

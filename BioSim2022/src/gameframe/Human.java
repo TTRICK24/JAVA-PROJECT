@@ -124,13 +124,44 @@ public class Human extends Actor {
             getWorld().add( death, getX(), getY() );
            
         }
-        else if (getHealth()<=50)
+        else if (getHealth()<=50){
             setColor(Color.RED);
-        else if (getHealth()<=100)
+            
+        }
+        else if (getHealth()<=100){
             setColor(Color.ORANGE);
-        else
-            setColor(Color.BLUE);
+           
+        }
+        else{
+            
+        }
     }
    
-   
+    public void slow(){
+        if (getColor().equals(Color.RED)){
+            setSpeed(getSpeed()-100);
+            System.out.println("hungry! slowing down");
+        }
+        else if (getColor().equals(Color.YELLOW)){
+            setSpeed(getSpeed()-50);
+        }
+        
+    }
+    
+   public void starve(){
+      int count=0;
+        for(int k=0; k<getActors().size(); k++) {
+             Actor temp = getActors().get(k);
+             if ( temp instanceof Food && temp.isActive() ) {
+                if (distanceTo(temp)<getSize()){
+                    count=count+1;
+                }
+                if (distanceTo(temp)>getSize()){
+                    count=count-1;
+                }
+                if (count<0){
+                    setHealth(getHealth()-50);
+                
+             }
+   }
 }

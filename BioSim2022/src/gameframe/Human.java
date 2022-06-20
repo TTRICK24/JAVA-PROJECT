@@ -57,15 +57,44 @@ public class Human extends Actor {
         ArrayList<Actor> ac = getWorld().getActors();
         double dt=0;
         Actor closeThreat=null;
+        double closest=999999;
     //make sure to check later, that prey is not null before trying to use it!   
         if(ac.size()>0){
-            double closest=9999999;
+            
             for(int k=0; k<ac.size();k++){
                 Actor temp = ac.get(k);
                 if (temp.isActive() && temp instanceof Zombie) {
                 double d = distanceTo(temp);
                     if(d<closest){
                         closest=d;
+                        if(d<200){
+                            closeThreat=temp;
+                        }
+                        }  
+                }
+            }
+            if (closeThreat==null) {
+                phase=0;//do nothing
+            }
+            if (closeThreat!=null) {
+                phase=1;
+                dt=directionTo(closeThreat)-180;
+                double newSpeed=Randomizer.getDouble(0.5, 1.0);
+                setSpeed(newSpeed);
+                setDirection(dt);
+
+            }
+ 
+   
+    }
+        if(ac.size()>0){
+            double closest1=closest;
+            for(int k=0; k<ac.size();k++){
+                Actor temp = ac.get(k);
+                if (temp.isActive() && temp instanceof Zombie) {
+                double d = distanceTo(temp);
+                    if(d<closest1){
+                        closest1=d;
                         if(d<200){
                             closeThreat=temp;
                         }

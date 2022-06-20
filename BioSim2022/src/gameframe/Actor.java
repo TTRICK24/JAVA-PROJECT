@@ -177,7 +177,7 @@ public class Actor {
     public void onScreen(){
         if(getY()>580){
             y=580;
-            turn(180);
+            turn(90);
         }    
         if(getX()>780){
             x=780;
@@ -185,7 +185,7 @@ public class Actor {
         }
         if(getY()<30){
             y=30;
-            turn(180);
+            turn(90);
         
         }
         if(getX()<30){

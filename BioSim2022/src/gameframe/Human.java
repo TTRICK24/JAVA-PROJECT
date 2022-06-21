@@ -61,6 +61,7 @@ public class Human extends Actor {
         
         
     }
+   
     public void runAway(){
         ArrayList<Actor> ac = getWorld().getActors();
         
@@ -99,11 +100,14 @@ public class Human extends Actor {
                 double zd=directionTo(closeThreat);
                 System.out.println(zd);
                 slow();
-                
+                if(zd==getDirection()||zd-20==getDirection() || zd+20==getDirection()){
+                    turn(180);
+                }
                     if(getX()<=30 && getY()<=30){
                         System.out.println("IN CORNER");
                         phase=2;  
                         if(zd<=360 && zd>=315){
+                            
                             setDirection(270);
                             countdown=80;
                             System.out.println("HIHIHIHIHIHIHIHIHI");
@@ -148,41 +152,49 @@ public class Human extends Actor {
                             }
                         
                     }
-                    else if(getX()==30){
+                    else if(getX()==30 && getY()!=30 && getY()!=580){
                         System.out.println("on left border");
                         if(getDirection()>=90 && getDirection()<=180){
                             setDirection(90);
+                            countdown=80;
                         }
                         else if(getDirection()>=180 && getDirection()<=270){
                             setDirection(270);
+                            countdown=80;
                         }
                        
                     }
-                    else if(getX()==780){
+                    else if(getX()==780 && getY()!=30 && getY()!=580){
                         System.out.println("on right border");
                          if(getDirection()>=0 && getDirection()<=90){
                             setDirection(90);
+                            countdown=80;
                         }
                         else if(getDirection()>=270 && getDirection()<=360){
                             setDirection(270);
+                            countdown=80;
                         }
                     }
-                    else if(getY()==30){
+                    else if(getY()==30 && getX()!=780 && getX()!=30){
                         System.out.println("on top border");
                         if(getDirection()>=90 && getDirection()<=180){
                             setDirection(180);
+                            countdown=80;
                         }
                         else if(getDirection()<=90 && getDirection()>=0){
                             setDirection(0);
+                            countdown=80;
                         }
                     }
-                    else if(getY()==580){
+                    else if(getY()==580 && getX()!=780 && getX()!=30){
                         System.out.println("on bottom border");
                         if(getDirection()>=180 && getDirection()<=270){
                             setDirection(180);
+                            countdown=80;
                         }
                         else if(getDirection()>=270 && getDirection()<=360){
                             setDirection(0);
+                            countdown=80;
                         }
                     }    
                         

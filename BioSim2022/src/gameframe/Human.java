@@ -73,9 +73,10 @@ public class Human extends Actor {
                 double d = distanceTo(temp);
                     if(d<closest){
                         closest=d;
-                        if(d<300){
+                        if(d<400){
                             closeThreat=temp;
                         }
+
                     }  
                 }
             }
@@ -87,7 +88,7 @@ public class Human extends Actor {
                 System.out.println("zombie nearby" + closeThreat.getX() + "," + closeThreat.getY() );
                 System.out.println("" + getX() + " " + getY() );
                 
-                if(countdown==0){
+                if((countdown==0||phase==0)||(countdown==0&& phase==0)){
                     setDirection(directionTo(closeThreat)-180);
                     phase=1;
                 }
@@ -99,45 +100,52 @@ public class Human extends Actor {
                         System.out.println("IN CORNER");
                         phase=2;  
                         if(zd<=360 && zd>=315){
-                                setDirection(270);
-                                countdown=100;
-                                System.out.println("HIHIHIHIHIHIHIHIHI");
-                            }
+                            setDirection(270);
+                            countdown=80;
+                            System.out.println("HIHIHIHIHIHIHIHIHI");
+                        }
                            
-                            else if(zd<315 && zd>=270){
-                                setDirection(0);
-                                countdown=101;
-                                System.out.println("HWIOAHTIOAWHTOHWA");
-                            }
-                            else if(zd<=90 && zd>=45){
-                                setDirection(360);
-                                countdown=100;
+                        else if(zd<315 && zd>=270){
+                            setDirection(0);
+                            countdown=80;
+                            System.out.println("HWIOAHTIOAWHTOHWA");
+                        }
+                    }
+                    else if(getX()<=30 && getY()>=580){
+                        if(zd<=90 && zd>=45){
+                            setDirection(360);
+                            countdown=80;
                                
                         }
-                            else if(zd<45 && zd>=0){
-                                setDirection(90);
-                                countdown=100;
-                            }
-                            else if(zd>=90 && zd<=135){
-                                setDirection(180);
-                                countdown=100;
+                        else if(zd<45 && zd>=0){
+                            setDirection(90);
+                            countdown=80;
+                        }
+                    }
+                    else if(getX()>=780 && getY()>=580){
+                        if(zd>=90 && zd<=135){
+                            setDirection(180);
+                            countdown=80;
                                         
+                        }
+                        else if(zd>135 && zd<=180){
+                            setDirection(90);
+                            countdown=80;
+                        }
+                    }
+                    else if(getX()>=780 && getY()<=30){
+                        if(zd>=180 && zd<225){
+                            setDirection(270);
+                            countdown=80;
+                        }
+                        else if(zd>=225 && zd<=270){
+                            setDirection(180);
+                            countdown=80;
                             }
-                            else if(zd>135 && zd<=180){
-                                setDirection(90);
-                                countdown=100;
-                            }
-                            else if(zd>=180 && zd<=225){
-                                setDirection(270);
-                                countdown=100;
-                            }
-                            else if(zd>225 && zd<=270){
-                                setDirection(180);
-                                countdown=100;
-                            }
+                    }
                            
                         
-                    }     
+                       
                    
                 
                 

@@ -18,22 +18,22 @@ public class Human extends Actor {
         
     }
     
-    int count=0;
+    
     int countdown=0;
     public void act() {
-        if (countdown>0){
-            countdown-=1;
+        if (phase==2){
+            if(countdown>0){
+                countdown=countdown-1;
+        
+            }
         }
-        count=+1;
         if (phase==0){
             randomizeMotion();
             borderCollision();
         }
         
-        if (countdown==0){
-            runAway();
-            countdown=100;
-        }
+        
+        runAway();
         
         onScreen();
         
@@ -43,13 +43,12 @@ public class Human extends Actor {
         handleHealth();
         
         
-        if (count > 80){
-        count=0;}
+        
        
     }
     
     public void randomizeMotion() {
-        int r=Randomizer.getInteger(1,100);
+        int r=Randomizer.getInteger(1,200);
         if (r<=1) {
             double newDirection=Randomizer.getDouble(0,360);
             
@@ -80,44 +79,50 @@ public class Human extends Actor {
                     }  
                 }
             }
+        }
             if (closeThreat==null) {
                 phase=0;//do nothing
             }
             if (closeThreat!=null) {
                 System.out.println("zombie nearby" + closeThreat.getX() + "," + closeThreat.getY() );
                 System.out.println("" + getX() + " " + getY() );
-                phase=1;
                 
-                setDirection(directionTo(closeThreat)-180);
-                
+                if(countdown==0){
+                    setDirection(directionTo(closeThreat)-180);
+                    phase=1;
+                }
                 double zd=directionTo(closeThreat);
                 System.out.println(zd);
                 slow();
-                if(countdown>0){
-                  if(getX()<=30 && getY()<=30){
-                       if(zd<=360 && zd>=315){
-                        setDirection(270);
-                        countdown=100;
-                        System.out.println("HIHIHIHIHIHIHIHIHI");
-                    }
-                        else if(zd<315 && zd>=270){
-                            setDirection(0);
-                            countdown=100;
-                            System.out.println("HWIOAHTIOAWHTOHWA");
-                        }
-                        else{
-                            setDirection(directionTo(closeThreat)-180);
-                        }
-                }
+                
+                    if(getX()<=30 && getY()<=30){
+                        System.out.println("IN CORNER");
+                        phase=2;  
+                        if(zd<=360 && zd>=315){
+                                setDirection(270);
+                                countdown=100;
+                                System.out.println("HIHIHIHIHIHIHIHIHI");
+                            }
+                           
+                            else if(zd<315 && zd>=270){
+                                setDirection(0);
+                                countdown=101;
+                                System.out.println("HWIOAHTIOAWHTOHWA");
+                            }
+                    }     
+                   
                 
                 
                
-
-            }
+                  
+                    
+                   
+                  
+                }
  
    
-        }
-        }
+        
+        
     }
     @Override
     public void draw(Graphics g) {

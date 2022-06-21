@@ -109,6 +109,34 @@ public class Human extends Actor {
                                 countdown=101;
                                 System.out.println("HWIOAHTIOAWHTOHWA");
                             }
+                            else if(zd<=90 && zd>=45){
+                                setDirection(360);
+                                countdown=100;
+                               
+                        }
+                            else if(zd<45 && zd>=0){
+                                setDirection(90);
+                                countdown=100;
+                            }
+                            else if(zd>=90 && zd<=135){
+                                setDirection(180);
+                                countdown=100;
+                                        
+                            }
+                            else if(zd>135 && zd<=180){
+                                setDirection(90);
+                                countdown=100;
+                            }
+                            else if(zd>=180 && zd<=225){
+                                setDirection(270);
+                                countdown=100;
+                            }
+                            else if(zd>225 && zd<=270){
+                                setDirection(180);
+                                countdown=100;
+                            }
+                           
+                        
                     }     
                    
                 

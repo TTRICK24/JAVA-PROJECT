@@ -3,15 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/rickm/Downloads/JAVA-PROJECT/BioSim2022/src/gameframe/World.java</file>
-            <file>file:/C:/Users/rickm/Downloads/JAVA-PROJECT/BioSim2022/src/gameframe/Randomizer.java</file>
-            <file>file:/C:/Users/rickm/Downloads/JAVA-PROJECT/BioSim2022/src/gameframe/Generator.java</file>
-            <file>file:/C:/Users/rickm/Downloads/JAVA-PROJECT/BioSim2022/src/gameframe/Zombie.java</file>
-            <file>file:/C:/Users/rickm/Downloads/JAVA-PROJECT/BioSim2022/src/gameframe/Human.java</file>
-            <file>file:/C:/Users/rickm/Downloads/JAVA-PROJECT/BioSim2022/src/gameframe/Food.java</file>
-            <file>file:/C:/Users/rickm/Downloads/JAVA-PROJECT/BioSim2022/src/gameframe/Actor.java</file>
-            <file>file:/C:/Users/rickm/Downloads/JAVA-PROJECT/BioSim2022/src/gameframe/tester.java</file>
-            <file>file:/C:/Users/rickm/Downloads/JAVA-PROJECT/BioSim2022/src/gameframe/Death.java</file>
+            <file>file:/C:/Users/Jenna/OneDrive/Documents/GitHub/JAVA-PROJECT/BioSim2022/src/gameframe/tester.java</file>
+            <file>file:/C:/Users/Jenna/OneDrive/Documents/GitHub/JAVA-PROJECT/BioSim2022/src/gameframe/Actor.java</file>
+            <file>file:/C:/Users/Jenna/OneDrive/Documents/GitHub/JAVA-PROJECT/BioSim2022/src/gameframe/Food.java</file>
+            <file>file:/C:/Users/Jenna/OneDrive/Documents/GitHub/JAVA-PROJECT/BioSim2022/src/gameframe/Randomizer.java</file>
+            <file>file:/C:/Users/Jenna/OneDrive/Documents/GitHub/JAVA-PROJECT/BioSim2022/src/gameframe/World.java</file>
+            <file>file:/C:/Users/Jenna/OneDrive/Documents/GitHub/JAVA-PROJECT/BioSim2022/src/gameframe/Zombie.java</file>
+            <file>file:/C:/Users/Jenna/OneDrive/Documents/GitHub/JAVA-PROJECT/BioSim2022/src/gameframe/Death.java</file>
+            <file>file:/C:/Users/Jenna/OneDrive/Documents/GitHub/JAVA-PROJECT/BioSim2022/src/gameframe/Human.java</file>
+            <file>file:/C:/Users/Jenna/OneDrive/Documents/GitHub/JAVA-PROJECT/BioSim2022/src/gameframe/Generator.java</file>
         </group>
     </open-files>
 </project-private>

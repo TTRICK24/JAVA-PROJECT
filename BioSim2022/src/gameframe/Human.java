@@ -146,8 +146,45 @@ public class Human extends Actor {
                             setDirection(180);
                             countdown=80;
                             }
+                        
                     }
-                           
+                    else if(getX()==30){
+                        System.out.println("on left border");
+                        if(getDirection()>=90 && getDirection()<=180){
+                            setDirection(90);
+                        }
+                        else if(getDirection()>=180 && getDirection()<=270){
+                            setDirection(270);
+                        }
+                       
+                    }
+                    else if(getX()==780){
+                        System.out.println("on right border");
+                         if(getDirection()>=0 && getDirection()<=90){
+                            setDirection(90);
+                        }
+                        else if(getDirection()>=270 && getDirection()<=360){
+                            setDirection(270);
+                        }
+                    }
+                    else if(getY()==30){
+                        System.out.println("on top border");
+                        if(getDirection()>=90 && getDirection()<=180){
+                            setDirection(180);
+                        }
+                        else if(getDirection()<=90 && getDirection()>=0){
+                            setDirection(0);
+                        }
+                    }
+                    else if(getY()==580){
+                        System.out.println("on bottom border");
+                        if(getDirection()>=180 && getDirection()<=270){
+                            setDirection(180);
+                        }
+                        else if(getDirection()>=270 && getDirection()<=360){
+                            setDirection(0);
+                        }
+                    }    
                         
                        
                    

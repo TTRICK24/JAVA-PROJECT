@@ -20,6 +20,7 @@ public class Human extends Actor {
     
     
     int countdown=0;
+    int count=0;
     public void act() {
         if (phase==2){
             if(countdown>0){
@@ -28,10 +29,12 @@ public class Human extends Actor {
             }
         }
         if (phase==0){
-            randomizeMotion();
-            borderCollision();
+            count+=1;
+            if (count>50){
+                randomizeMotion();
+                borderCollision();
+            }
         }
-        
         
         runAway();
         
@@ -73,7 +76,7 @@ public class Human extends Actor {
                 double d = distanceTo(temp);
                     if(d<closest){
                         closest=d;
-                        if(d<400){
+                        if(d<300){
                             closeThreat=temp;
                         }
 
@@ -83,6 +86,7 @@ public class Human extends Actor {
         }
             if (closeThreat==null) {
                 phase=0;//do nothing
+                count=0;
             }
             if (closeThreat!=null) {
                 System.out.println("zombie nearby" + closeThreat.getX() + "," + closeThreat.getY() );

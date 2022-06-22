@@ -100,7 +100,8 @@ public class Human extends Actor {
                 double zd=directionTo(closeThreat);
                 System.out.println(zd);
                 slow();
-                if(zd==getDirection()||zd-20==getDirection() || zd+20==getDirection()){
+                if(zd==getDirection()||zd-getDirection()>-20 && zd-getDirection()<20){
+                    
                     turn(180);
                 }
                     if(getX()<=30 && getY()<=30){
@@ -164,7 +165,7 @@ public class Human extends Actor {
                         }
                        
                     }
-                    else if(getX()==780 && getY()!=30 && getY()!=580){
+                    else if(getX()>=780 && getY()!=30 && getY()!=580){
                         System.out.println("on right border");
                          if(getDirection()>=0 && getDirection()<=90){
                             setDirection(90);

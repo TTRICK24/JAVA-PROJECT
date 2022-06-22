@@ -13,7 +13,7 @@ public class Human extends Actor {
         super(); 
         setColor(Color.BLUE);
         setSize(25);
-        setHealth(80);
+        setHealth(100);
         phase=0;
         
     }
@@ -44,7 +44,7 @@ public class Human extends Actor {
         move();
         checkFoodCollision();
         handleHealth();
-        
+        fightBack();
         
         
        
@@ -200,7 +200,7 @@ public class Human extends Actor {
                     }    
                         
                        
-                   
+      
                 
                 
                
@@ -214,6 +214,64 @@ public class Human extends Actor {
         
         
     }
+    
+    
+    public void fightBack(){
+        ArrayList<Actor> ac = getWorld().getActors();
+        
+        Actor closeThreat=null;
+        
+        double closest=999999;
+    //make sure to check later, that prey is not null before trying to use it!   
+        if(ac.size()>0){
+            
+            for(int k=0; k<ac.size();k++){
+                Actor temp = ac.get(k);
+                if (temp.isActive() && temp instanceof Zombie) {
+                double d = distanceTo(temp);
+                    if(d<closest){
+                        closest=d;
+                        if(d<300){
+                            closeThreat=temp;
+                        }
+
+                    }  
+                }
+            }
+        }
+            if (closeThreat==null) {
+                phase=0;//do nothing
+                count=0;
+            }
+            if (closeThreat!=null) {
+                System.out.println("zombie nearby" + closeThreat.getX() + "," + closeThreat.getY() );
+                System.out.println("" + getX() + " " + getY() );
+                
+                if((countdown==0||phase==0)||(countdown==0&& phase==0)){
+                    setDirection(directionTo(closeThreat)-180);
+                    phase=1;
+                }
+                double zd=directionTo(closeThreat);
+        
+            
+        
+        
+        if(getColor().equals(Color.BLUE)){
+            setDirection(directionTo(closeThreat));
+            
+            if(distanceTo(closeThreat)<getSize()){
+                closeThreat.takeDamage(10);
+            }
+            if(closeThreat.getHealth()==0){
+                closeThreat.deactivate();
+                
+            }
+        }
+            }
+            
+    }
+    
+    
     @Override
     public void draw(Graphics g) {
         g.setColor( getColor() );

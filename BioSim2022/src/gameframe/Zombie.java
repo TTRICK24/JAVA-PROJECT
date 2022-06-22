@@ -14,10 +14,13 @@ public class Zombie extends Actor {
     
     Actor myPrey=null;
     int phase=0;
+    
+   
     public Zombie() {
         super(); 
         setColor(Color.GREEN);
         setSize(25);
+        setHealth(80);
         phase=0;
     }
 

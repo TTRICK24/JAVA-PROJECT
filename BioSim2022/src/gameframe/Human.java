@@ -6,8 +6,7 @@ import java.util.ArrayList;
 
 public class Human extends Actor {
     
-    private Actor closeThreat=null;
-    private Actor closeThreat1=null;
+   
     int phase;
     public Human() {
         super(); 
@@ -36,15 +35,18 @@ public class Human extends Actor {
             }
         }
         
-        runAway();
-        
-        onScreen();
-        
-        
+        if(getColor().equals(Color.ORANGE)||getColor().equals(Color.RED)){
+             runAway();
+        }
+       
+        else if(getColor().equals(Color.BLUE)){
+            fightBack();
+        }
         move();
+        onScreen();
         checkFoodCollision();
         handleHealth();
-        fightBack();
+        slow();
         
         
        
@@ -197,17 +199,19 @@ public class Human extends Actor {
                             setDirection(0);
                             countdown=80;
                         }
-                    }    
-                        
-                       
-      
-                
-                
-               
                   
+        
+                
+                
+        
                     
-                   
-                  
+                    
+                    
+                    
+                    }    
+                    
+                    
+                            
                 }
  
    
@@ -217,56 +221,54 @@ public class Human extends Actor {
     
     
     public void fightBack(){
-        ArrayList<Actor> ac = getWorld().getActors();
+        ArrayList<Actor> ac1 = getWorld().getActors();
         
-        Actor closeThreat=null;
+        Actor closeThreat1=null;
         
         double closest=999999;
     //make sure to check later, that prey is not null before trying to use it!   
-        if(ac.size()>0){
+        if(ac1.size()>0){
             
-            for(int k=0; k<ac.size();k++){
-                Actor temp = ac.get(k);
+            for(int k=0; k<ac1.size();k++){
+                Actor temp = ac1.get(k);
                 if (temp.isActive() && temp instanceof Zombie) {
                 double d = distanceTo(temp);
                     if(d<closest){
                         closest=d;
                         if(d<300){
-                            closeThreat=temp;
+                            closeThreat1=temp;
                         }
 
                     }  
                 }
             }
         }
-            if (closeThreat==null) {
+            if (closeThreat1==null) {
                 phase=0;//do nothing
                 count=0;
+                System.out.println("BLUE IDLE");
             }
-            if (closeThreat!=null) {
-                System.out.println("zombie nearby" + closeThreat.getX() + "," + closeThreat.getY() );
-                System.out.println("" + getX() + " " + getY() );
+            if (closeThreat1!=null) {
+                double zd=directionTo(closeThreat1);
+                System.out.println("TARGET DIRECTION: "+zd);
+                phase=4;
+                System.out.println("BLUE ATTACK");
                 
-                if((countdown==0||phase==0)||(countdown==0&& phase==0)){
-                    setDirection(directionTo(closeThreat)-180);
-                    phase=1;
+        
+            
+        
+        
+        
+                setDirection(zd);
+            
+                if(distanceTo(closeThreat1)<getSize()){
+                closeThreat1.takeDamage(5);
                 }
-                double zd=directionTo(closeThreat);
-        
-            
-        
-        
-        if(getColor().equals(Color.BLUE)){
-            setDirection(directionTo(closeThreat));
-            
-            if(distanceTo(closeThreat)<getSize()){
-                closeThreat.takeDamage(10);
-            }
-            if(closeThreat.getHealth()==0){
-                closeThreat.deactivate();
+                if(closeThreat1.getHealth()<=0){
+                    closeThreat1.deactivate();
                 
-            }
-        }
+                }
+        
             }
             
     }
@@ -283,11 +285,11 @@ public class Human extends Actor {
     public void checkFoodCollision() {
         //cycle through all actors.  see if we are touching any food.  eat and deactivate!
         for(int k=0; k<getActors().size(); k++) {
-             Actor temp = getActors().get(k);
-             if ( temp instanceof Food && temp.isActive() ) {
-                     if (distanceTo(temp)<getSize() ) {
+             Actor tempFood = getActors().get(k);
+             if ( tempFood instanceof Food && tempFood.isActive() ) {
+                     if (distanceTo(tempFood)<getSize() ) {
                          setHealth(getHealth()+10);
-                         getWorld().remove(temp);  //or temp.deactivate();
+                         getWorld().remove(tempFood);  //or temp.deactivate();
                      }
              }
          }
@@ -324,33 +326,18 @@ public class Human extends Actor {
             setSpeed(newSpeed);
         }
         else if (getColor().equals(Color.ORANGE)){
-            double newSpeed=Randomizer.getDouble(1.2, 1.5);
+            double newSpeed=Randomizer.getDouble(1.0, 1.3);
             setSpeed(newSpeed);
         }
-        else{
+        else if (getColor().equals(Color.BLUE)){
             double newSpeed=Randomizer.getDouble(2.0, 2.3);
+            System.out.println("BLUE SPEED SET");
             setSpeed(newSpeed);
+            
         }
     }
     
-   public void starve(){
-      int count=0;
-        for(int k=0; k<getActors().size(); k++) {
-             Actor temp = getActors().get(k);
-             if ( temp instanceof Food && temp.isActive() ) {
-                if (distanceTo(temp)<getSize()){
-                    count=count+1;
-                }
-                if (distanceTo(temp)>getSize()){
-                    count=count-1;
-                }
-                if (count<0){
-                    setHealth(getHealth()-50);
-                
-             }
-            }
-        }
-   }
+
       public void borderCollision(){
         int turnNum=0;
         if (getDirection()>270 && getDirection()<360){

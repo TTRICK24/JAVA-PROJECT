@@ -90,14 +90,19 @@ public void hunt(){
                 attack((Human)prey);
 
         }
- 
+    
    
     }
-    
+   
 }
 public void attack(Human prey){
         prey.takeDamage(2);
         System.out.println("attacking " + prey);
-}
+        
+        
+     
+    
+}        
+      
 
 } //eoc

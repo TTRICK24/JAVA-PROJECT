@@ -32,6 +32,7 @@ public class Zombie extends Actor {
         
        
         if(phase==0){
+            setSpeed(0.7);
             randomizeMove();
             hunt();
             move();
@@ -48,15 +49,12 @@ public void draw(Graphics g) {
 public void randomizeMove(){
      int r=Randomizer.getInteger(1,100);
         if (r<=1) {
-            double newSpeed=Randomizer.getDouble(0.5, 1.2);
+            
             double newDirection=Randomizer.getDouble(0,360);
-            setSpeed(newSpeed);
+            
             setDirection(newDirection);
         }
-        if ( distanceTo(400,300) > 500 ) {
-            double toCenter = directionTo(400,300);
-            setDirection(toCenter);
-        }
+       
         
 }
 public void hunt(){
@@ -79,6 +77,7 @@ public void hunt(){
         }
         if (prey==null) {
             phase=0;//do nothing
+            
         }
         if (prey!=null) {
             phase=1;

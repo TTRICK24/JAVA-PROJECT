@@ -77,7 +77,9 @@ public class World extends javax.swing.JFrame implements KeyEventDispatcher,
         jLabel1 = new javax.swing.JLabel();
         textTick = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        textHealth = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         buttonStop = new javax.swing.JButton();
         textReset = new javax.swing.JButton();
 
@@ -120,9 +122,13 @@ public class World extends javax.swing.JFrame implements KeyEventDispatcher,
 
         textTick.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jLabel2.setText("Humans Left");
+        jLabel2.setText("number of humans");
 
-        textHealth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jLabel3.setText("number of zombies");
+
+        jTextField1.setText("jTextField1");
+
+        jTextField2.setText("jTextField1");
 
         javax.swing.GroupLayout panelInfoLayout = new javax.swing.GroupLayout(panelInfo);
         panelInfo.setLayout(panelInfoLayout);
@@ -131,13 +137,18 @@ public class World extends javax.swing.JFrame implements KeyEventDispatcher,
             .addGroup(panelInfoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(textTick, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                    .addComponent(textHealth))
-                .addGap(107, 107, 107))
+                    .addGroup(panelInfoLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(textTick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(107, 107, 107))
+                    .addGroup(panelInfoLayout.createSequentialGroup()
+                        .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         panelInfoLayout.setVerticalGroup(
             panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,11 +157,15 @@ public class World extends javax.swing.JFrame implements KeyEventDispatcher,
                 .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textTick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
+                .addGap(84, 84, 84)
+                .addComponent(jLabel2)
+                .addGap(1, 1, 1)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(textHealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(567, Short.MAX_VALUE))
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(334, Short.MAX_VALUE))
         );
 
         buttonStop.setText("Stop");
@@ -183,27 +198,28 @@ public class World extends javax.swing.JFrame implements KeyEventDispatcher,
                     .addComponent(panelDraw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(panelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(panelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonStart)
                             .addComponent(buttonStop)
                             .addComponent(textReset))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelDraw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(panelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 561, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -414,10 +430,12 @@ public class World extends javax.swing.JFrame implements KeyEventDispatcher,
     private javax.swing.JButton buttonStop;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel panelDraw;
     private javax.swing.JPanel panelInfo;
-    private javax.swing.JTextField textHealth;
     private javax.swing.JButton textReset;
     private javax.swing.JTextField textTick;
     // End of variables declaration//GEN-END:variables
@@ -436,18 +454,18 @@ public class World extends javax.swing.JFrame implements KeyEventDispatcher,
         //clear out actors
         getWorld().getActors().clear();
         //add some actors to the actors list
-        for(int k=1; k<2; k++) {
+        for(int k=1; k<15; k++) {
             int xp=(int)(Math.random()*760)+30;
             int yp=(int)(Math.random()*560)+30;
             getWorld().add(new Human(), xp, yp);
         }
         
-        for(int k=1; k<1000; k++) {
+        for(int k=1; k<200; k++) {
             int xp=(int)(Math.random()*760)+30;
             int yp=(int)(Math.random()*560)+30;
             getWorld().add(new Food() , xp ,yp);            
         }
-         for(int k=1; k<10; k++) {
+         for(int k=1; k<100; k++) {
             int xp=(int)(Math.random()*760)+30;
             int yp=(int)(Math.random()*560)+30;
             getWorld().add(new Zombie(), xp, yp);
